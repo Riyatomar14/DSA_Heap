@@ -11,6 +11,6 @@
 -Min heap-The root node's key is the smallest of all the keys in its descendants, and this property is true for all subtrees. The parent node's key is less than or equal to the child node's key.
 
 node- i th index
-left child - (2*i) index
-right child - (2*i + 1) index
-parent node - (i/2) index
+##### left child - (2*i) index
+##### right child - (2*i + 1) index
+##### parent node - (i/2) index
