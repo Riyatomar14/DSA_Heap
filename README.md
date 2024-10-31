@@ -9,3 +9,8 @@
 ### A heap is CBT that comes up with a HEAP ORDER PROPERTY(MAX HEAP and MIN HEAP).
 -Max heap-The root node's key is the largest of all the keys in its descendants, and this property is true for all subtrees. The parent node's key is greater than or equal to the child node's key.
 -Min heap-The root node's key is the smallest of all the keys in its descendants, and this property is true for all subtrees. The parent node's key is less than or equal to the child node's key.
+
+node- i th index
+left child - (2*i) index
+right child - (2*i + 1) index
+parent node - (i/2) index
