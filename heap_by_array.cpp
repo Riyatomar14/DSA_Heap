@@ -1,4 +1,4 @@
-// heap by array
+//heap by array
 #include <iostream>
 using namespace std;
 
@@ -7,107 +7,104 @@ class heap{
         int arr[100];
         int size=0;
 
-    //constructor    
-    heap(){
-        arr[0]=-1;
-        size=0;
+    // Constructor
+    heap() {
+        arr[0] = -1;
+        size = 0;
     } 
 
-    //for insert
-    void insert(int value){
+    // Insert element into heap
+    void insert(int value) {
         size = size + 1;
         int index = size;
         arr[index] = value;
             
-        while(index > 1){
+        while (index > 1) {
             int parent = index / 2;
             
-            if(arr[parent] < arr[index]){
-                int temp = arr[parent];
-                arr[parent] = arr[index];
-                arr[index] = temp;
-
+            if (arr[parent] < arr[index]) {
+                swap(arr[parent], arr[index]);
                 // Update index to continue heapifying up
                 index = parent;
-            }
-            else{
+            } else {
                 return;
             }
         }
     }
     
-    //for delete
-    void deletefromHeap(){
-        //empty heap
-        if(size==0){
-            cout<<"nothing to delete"<<endl;
+    // Delete the root element from heap
+    void deletefromHeap() {
+        if (size == 0) {
+            cout << "Nothing to delete" << endl;
             return;
         }
         //step1:put the last element into first index
-        arr[1]=arr[size];
+        arr[1] = arr[size];
         //step2:remove last element
         size--; 
-        
         //step3:take root node to its correct position after swapping
-        int i =1;
-        while(i<size){
-            int leftIndex=2*i;
-            int rightIndex=2*i+1;
+        int i = 1;
+        while (i <= size) {
+            int leftIndex = 2 * i;
+            int rightIndex = 2 * i + 1;
             
-            if(leftIndex < size && arr[i] < arr[leftIndex]){
-                int temp=arr[i];
-                arr[i]=arr[leftIndex];
-                arr[leftIndex]=temp;
-                
-                //update to continue the heapify
+            if (leftIndex <= size && arr[i] < arr[leftIndex]) {
+                swap(arr[i], arr[leftIndex]);
                 i = leftIndex;
-            }
-            else if(rightIndex < size && arr[i] < arr[rightIndex]){
-                int temp=arr[i];
-                arr[i]=arr[rightIndex];
-                arr[rightIndex]=temp;
-                
-                //update to continue the heapify
+            } else if (rightIndex <= size && arr[i] < arr[rightIndex]) {
+                swap(arr[i], arr[rightIndex]);
                 i = rightIndex;
-            }
-            else{
+            } else {
                 return;
             }
         }
-        
-        
-        
     }
     
-    //for print
-    void print(){
-        for(int i = 1; i <= size; i++){
+    // Print the heap
+    void print() {
+        for (int i = 1; i <= size; i++) {
             cout << arr[i] << " ";
         }
         cout << endl;
     }
 };
-//heapify function for max heap
-void heapify(int arr[],int n,int i){
-    int largest =i;
-    int left=2*i;
-    int right=2*i + 1; 
-    //left node is within size and if smaller then swap
-    if(left < n && arr[largest]<arr[left]){
-        largest=left;
-    }
-    //right node is within size and if smaller then swap
-    if(right < n && arr[largest]<arr[right]){
-        largest=right;
-    }
-    if(largest!= i){
-        int temp=arr[largest];
-        arr[largest]=arr[i];
-        arr[i]=temp;
-        heapify(arr,n,largest);
-    }
+
+// Heapify function for max heap
+void heapifyMax(int arr[], int n, int i) {
+    int largest = i;
+    int left = 2 * i;
+    int right = 2 * i + 1;
     
+    if (left <= n && arr[largest] < arr[left]) {
+        largest = left;
+    }
+    if (right <= n && arr[largest] < arr[right]) {
+        largest = right;
+    }
+    if (largest != i) {
+        swap(arr[largest], arr[i]);
+        heapifyMax(arr, n, largest);
+    }
 }
+
+// Heapify function for min heap
+void heapifyMin(int arr[], int n, int i) {
+    int smallest = i;
+    int left = 2 * i;
+    int right = 2 * i + 1;
+    
+    if (left <= n && arr[smallest] > arr[left]) {
+        smallest = left;
+    }
+    if (right <= n && arr[smallest] > arr[right]) {
+        smallest = right;
+    }
+    if (smallest != i) {
+        swap(arr[smallest], arr[i]);
+        heapifyMin(arr, n, smallest);
+    }
+}
+
 int main() {
     heap h;
     h.insert(50);
@@ -119,14 +116,23 @@ int main() {
     h.deletefromHeap();
     h.print();
     
-    int arr[6]={-1,54,53,55,52,50};
-    int n=5;
-    for(int i=n/2;i>0;i--){
-        heapify(arr,n,i);
+    int arr[6] = {-1, 54, 53, 55, 52, 50};
+    int n = 5;
+    for (int i = n / 2; i > 0; i--) {
+        heapifyMax(arr, n, i);
     }
-    cout<<"printing the array now"<<endl;
-    for(int i=1;i<=n;i++){
-        cout<<arr[i]<<" ";
+    cout << "Printing the array now (according to max heap):" << endl;
+    for (int i = 1; i <= n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+    
+    for (int i = n / 2; i > 0; i--) {
+        heapifyMin(arr, n, i);
+    }
+    cout << "Printing the array now (according to min heap):" << endl;
+    for (int i = 1; i <= n; i++) {
+        cout << arr[i] << " ";
     }
     cout << endl;
 
