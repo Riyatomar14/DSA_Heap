@@ -14,7 +14,8 @@ node- i th index (index start with 1)
 ##### left child - (2*i) index
 ##### right child - (2*i + 1) index
 ##### parent node - (i/2) index
-####### Note: if index start with zero then left child formula change with right child.
+####### Note: if index start with zero then left child-2*i+1;
+right child-2*i+2;
 
 #### time complexity for inertion ,deletion and heapify algo. in heap is o(log n). 
 
