@@ -15,4 +15,10 @@ node- i th index
 ##### right child - (2*i + 1) index
 ##### parent node - (i/2) index
 
-#### time complexity for inertion and deletion in heap is o(log n). 
+#### time complexity for inertion ,deletion and heapify algo. in heap is o(log n). 
+
+## HEAPIFY ALGORITHM(place the node on its correct position) 
+In heapify algorithm we have given array , then we have to convert that array into heap.As we know that heap is a CBT(complete binary tree).
+### NOTE:we don't have to check the leaf node as it is a already a heap. so, for that we have one result to find the leaf node in a heap:
+# (n/2+1)-->n th index
+#### by this we have to process only the left node (1 --> n/2) to place it in correct position as we save time by not checking the leaf nodes in heap. 
