@@ -14,3 +14,5 @@ node- i th index
 ##### left child - (2*i) index
 ##### right child - (2*i + 1) index
 ##### parent node - (i/2) index
+
+#### time complexity for inertion and deletion in heap is o(log n). 
